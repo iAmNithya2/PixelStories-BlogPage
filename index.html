@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photography Blog - Pixel Stories</title>
+    <style>
+      
+
+        body {
+            background: url('IndexBG.JPG') no-repeat center center fixed;
+            font-family: 'Poppins', sans-serif;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            height: 100%;
+            background-size: cover;
+        }
+
+        
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            padding: 20px;
+            z-index: 10;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            animation: slideIn 1s ease-out;
+        }
+
+        header .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        header .logo-container img {
+            width: 80px;
+            height: auto;
+            margin-right: 10px;
+        }
+
+        header .logo-container h1 {
+            font-size: 2.5rem;
+            color: #ffcc00;
+            font-weight: bold;
+            letter-spacing: 2px;
+            transition: transform 0.5s ease-in-out;
+            margin: 0;
+        }
+
+        header h1:hover {
+            transform: scale(1.1);
+        }
+
+        header h1 span {
+            font-size: 1rem;
+            color: #fff;
+            font-weight: normal;
+        }
+        nav {
+    padding-right: 56px;
+}
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+            margin-right: 30px;
+        }
+
+        nav ul li {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            text-transform: uppercase;
+            padding: 10px;
+            letter-spacing: 1px;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #ffcc00;
+            transform: scale(1.1);
+        }
+
+        
+        .hero {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            position: relative;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+
+        .hero-text {
+            z-index: 2;
+            color: white;
+            font-size: 36px;
+            font-weight: bold;
+            text-transform: uppercase;
+            animation: slideIn 1s ease-in-out;
+        }
+
+        .hero-text p {
+            font-size: 20px;
+            margin-top: 20px;
+            animation: slideIn 1.5s ease-in-out;
+        }
+
+        .btn {
+            margin-top: 40px;
+            padding: 12px 30px;
+            background: #ffcc00;
+            color: #333;
+            text-decoration: none;
+            font-size: 18px;
+            border-radius: 30px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #ffaa00;
+            transform: translateY(-5px);
+        }
+
+        .gallery-showcase {
+    padding: 60px 20px;
+    text-align: center;
+    background: rgba(136, 40, 101, 0.1);
+    color: #333;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    animation: slideInFromBottom 1.5s ease-in-out;
+}
+
+.gallery-showcase h2 {
+    font-size: 36px;
+    margin-bottom: 40px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #333;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+.gallery-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    animation: fadeIn 2s ease-in-out;
+}
+
+/* Cards with pop-in animation */
+.gallery-card {
+    width: 250px;
+    height: 250px;
+    background: rgb(204, 231, 241);
+    border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            cursor: pointer;
+            position: relative;
+            animation: fadeInCard 1s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+}
+.gallery-card img {
+    width: 100%;
+    height: 70%;
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Zoom out effect on hover
+.gallery-card:hover img {
+    transform: scale(0.9);
+} */
+
+/* Zoom out effect when clicked */
+.gallery-card:active img {
+    transform: scale(0.8);
+}
+
+.gallery-card:active {
+    transform: scale(1.3); /* Further enlarges */
+    transition: transform 0.1s ease-in-out;  
+}
+
+.gallery-card:hover {
+    transform: scale(1.3); /* Further enlarges */
+    transition: transform 0.1s ease-in-out;  
+}
+
+/* Pop effect when cards appear */
+@keyframes popIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    80% {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.gallery-card:hover {
+    transform: translateY(-5px);
+    transform: scale(1.1);
+    box-shadow: 0px 6px 12px rgb(0, 0, 0);
+}
+
+
+.gallery-card img {
+    width: 100%;
+    height: 70%;
+    object-fit: cover;
+}
+
+.gallery-text {
+    height: 30%;
+    padding: 5px;
+    
+}
+
+
+.gallery-text h3 {
+    font-size: 16px;
+    color: #333;
+    margin: 0;
+}
+
+
+.gallery-text p {
+    font-size: 12px;
+    color: #777;
+    margin: 0;
+    font-style: italic;
+}
+
+.gallery-container a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .gallery-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .gallery-container:hover {
+        transform: scale(1.1);
+    }
+    .gallery-card {
+        width: 90%;
+        max-width: 350px;
+        margin-bottom: 30px;
+    }
+
+}
+
+/* ✨ Keyframe Animations ✨ */
+
+/* Fade-in effect for the gallery section */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Slide-in effect for the gallery */
+@keyframes slideInFromBottom {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Staggered fade-in for cards */
+@keyframes fadeInCard {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+            .btn {
+                padding: 10px 20px;
+                font-size: 16px;
+            }
+        
+
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        footer .footer-icon {
+            width: 30px;
+            margin-top: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        footer .footer-icon:hover {
+            transform: scale(1.2);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInCard {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Layout */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding: 20px 10px;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 10px;
+                margin-top: 20px;
+            }
+
+            .hero-text {
+                font-size: 30px;
+            }}
+
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <div class="logo-container">
+            <img src="logo.png" alt="Pixel Stories Logo">
+            <h1>
+                Pixel Stories
+                <span>by Joseph P C</span> 
+            </h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-text">
+            <h1>Capturing Moments</h1>
+            <p>Explore the beauty of photography through stunning visuals and stories.</p>
+            <a href="gallery.html" class="btn">Every picture tells a Story !!</a>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+ <section class="gallery-showcase">
+    <h2>Photography Categories</h2>
+    <div class="gallery-container">
+        <a href="food.html" class="gallery-card">
+            <img src="fo (3).jpg" alt="Food Photography">
+            <div class="gallery-text">
+                <h3>Food Photography</h3>
+                <p>Artistic captures of delicious cuisine.</p>
+            </div>
+        </a>
+        <a href="portrait.html" class="gallery-card">
+            <img src="po (3).jpg" alt="Portrait Photography">
+            <div class="gallery-text">
+                <h3>Portrait Photography</h3>
+                <p>Expressions and emotions captured through the lens.</p>
+            </div>
+        </a>
+        <a href="nature.html" class="gallery-card">
+            <img src="nat (4).jpg" alt="Nature Photography">
+            <div class="gallery-text">
+                <h3>Nature Photography</h3>
+                <p>Exploring landscapes and wildlife in all their glory.</p>
+            </div>
+        </a>
+        <a href="street.html" class="gallery-card">
+            <img src="st (4).jpg" alt="Street Photography">
+            <div class="gallery-text">
+                <h3>Street Photography</h3>
+                <p>Capturing the vibrant moments of everyday life.</p>
+            </div>
+        </a>
+    </div>
+</section>
+
+
+   
+    <footer>
+        <p>&copy; 2025 Pixel Stories| Joseph P C| All Rights Reserved</p>
+        <a href="https://github.com/iAmNithya2/"><img src="git.png" alt="GitHub" class="footer-icon"></a>
+    </footer>
+
+</body>
+</html>
